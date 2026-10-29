@@ -1,65 +1,75 @@
-<div align="center">
+ <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:7C3AED,50:EC4899,100:F97316&text=InsightCart&fontSize=54&fontColor=ffffff&fontAlignY=38&desc=Customer%20Sentiment%20Intelligence%20for%20E-Commerce&descAlignY=57" alt="InsightCart banner" />
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:7C3AED,50:EC4899,100:F97316&text=MarketMind-AI&fontSize=48&fontColor=ffffff&fontAlignY=38&desc=Customer%20Sentiment%20Intelligence%20for%20E-Commerce&descAlignY=57" alt="MarketMind-AI banner" />
 
-### Turn thousands of customer reviews into clear, actionable sentiment insights.
+### Turn thousands of customer reviews into actionable sentiment insights.
 
-[![Live Demo](https://img.shields.io/badge/Explore_Live_Dashboard-7C3AED?style=for-the-badge&logo=streamlit&logoColor=white)](https://aicw-insightcart.streamlit.app/)
-[![Source Code](https://img.shields.io/badge/View_Source-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/nupoor-mahajan/InsightCart)
 
-![Python](https://img.shields.io/badge/Python_3.11-3776AB?style=flat-square&logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit_1.58-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)
-![TensorFlow](https://img.shields.io/badge/TensorFlow_2.19-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)
+[![Python](https://img.shields.io/badge/Python_3.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-F7931E?style=flat-square&logo=scikitlearn&logoColor=white)
 ![XGBoost](https://img.shields.io/badge/XGBoost-0064A5?style=flat-square)
-![Status](https://img.shields.io/badge/Status-Deployed-22C55E?style=flat-square)
+
 
 </div>
 
 ---
 
-## The problem
+## Overview
 
-Customer reviews contain signals about satisfaction, recurring complaints and product perception, but manually reading thousands of reviews is slow and inconsistent.
+**MarketMind-AI** is a machine-learning-powered customer sentiment analysis platform designed to transform Amazon customer reviews into meaningful insights about product satisfaction and customer perception.
 
-**InsightCart** converts unstructured Amazon customer feedback into sentiment predictions and interactive visual summaries. It classifies reviews as **Negative**, **Neutral** or **Positive**, compares four machine-learning approaches, and exposes the results through a deployed Streamlit dashboard.
+The project combines natural language processing (NLP), classical machine learning, deep learning, and interactive data visualisation. It classifies customer reviews into three sentiment categories—Negative, Neutral, and Positive—and provides an interactive Streamlit dashboard for exploring review patterns, comparing model performance, and predicting sentiment for new reviews.
 
 ## Project at a glance
 
-| Dataset | Classes | Models compared | Best test accuracy |
-|---|---:|---:|---:|
-| 42,740 cleaned reviews | 3 | 4 | **95.45%** |
+| Metric | Value |
+|---|---:|
+| Cleaned customer reviews | 42,740 |
+| Sentiment categories | 3 |
+| Models evaluated | 4 |
+| Test-set size | 8,548 |
+| Best recorded test accuracy | **95.45%** |
 
-The sentiment labels were derived from review ratings:
+## Dataset and sentiment classification
 
-- **1–2 stars:** Negative
-- **3 stars:** Neutral
-- **4–5 stars:** Positive
+The dataset contains Amazon customer reviews labelled according to their star ratings.
 
-### Class distribution
+- **Negative:** 1–2 stars
+- **Neutral:** 3 stars
+- **Positive:** 4–5 stars
 
-| Sentiment | Reviews | Share |
+### Sentiment distribution
+
+| Sentiment | Number of reviews | Percentage |
 |---|---:|---:|
 | Positive | 17,923 | 41.9% |
 | Negative | 14,349 | 33.6% |
 | Neutral | 10,468 | 24.5% |
-
----
+| **Total** | **42,740** | **100%** |
 
 ## Model performance
 
-All reported values below come from the executed project notebooks. The test set contains **8,548 reviews**.
+Four model configurations were evaluated to compare their ability to classify customer reviews. The reported test results use a held-out dataset of 8,548 reviews.
 
-| Model | Representation | Accuracy | Precision | Recall | F1-score |
+| Model | Feature representation | Accuracy | Precision | Recall | F1-score |
 |---|---|---:|---:|---:|---:|
 | Random Forest | TF-IDF | 94.01% | 95% | 94% | 94% |
 | Tuned Random Forest | TF-IDF | ~94% | 95% | 94% | 94% |
 | XGBoost | TF-IDF | 94.69% | 94.96% | 94.69% | 94.72% |
 | **LSTM** | Token sequences | **95.45%** | **96%** | **95%** | **95%** |
 
-> **Best model:** The LSTM achieved the highest recorded test accuracy at **95.45%** with a test loss of **0.1602**. XGBoost was the strongest classical model at **94.69%** accuracy.
+### Key findings
 
-The tuned Random Forest recorded **93.84% cross-validation accuracy** using 3-fold `GridSearchCV`. Its selected parameters were:
+- **LSTM:** Achieved the highest recorded test accuracy of 95.45%, with a test loss of 0.1602.
+- **XGBoost:** Achieved 94.69% test accuracy, making it the strongest classical model in the reported results.
+- **Random Forest:** Provided a strong baseline using TF-IDF text features.
+- **Tuned Random Forest:** Achieved 93.84% cross-validation accuracy using three-fold `GridSearchCV`.
+
+### Random Forest hyperparameters
+
+The selected configuration was:
 
 ```python
 {
@@ -70,127 +80,148 @@ The tuned Random Forest recorded **93.84% cross-validation accuracy** using 3-fo
 }
 ```
 
----
+## Features and capabilities
 
-## What InsightCart can do
+### 1. Customer review exploration
 
-### Explore the dataset
+- Browse and filter reviews by sentiment.
+- Inspect raw and processed review datasets.
+- Compare star-rating and sentiment distributions.
+- Analyse review-length patterns across sentiment categories.
 
-- Browse and filter customer reviews by sentiment
-- Inspect the raw and processed datasets
-- Compare sentiment and rating distributions
-- Analyse review length across sentiment classes
+### 2. Interactive sentiment analytics
 
-### Discover patterns
+- Visualise the percentage of positive, negative, and neutral reviews.
+- Explore rating behaviour and geographic review volume where location data is available.
+- Analyse customer feedback through interactive Plotly charts.
+- Identify broad customer satisfaction trends.
 
-- View overall sentiment percentages
-- Explore rating behaviour and geographic review volume
-- Inspect dataset summaries through interactive Plotly charts
-- Identify broad customer-satisfaction patterns
+### 3. Sentiment prediction
 
-### Predict sentiment
+- Enter a customer review for analysis.
+- Select among Random Forest, tuned Random Forest, XGBoost, and LSTM.
+- View the predicted sentiment and confidence score.
+- Compare inference times across the available models.
 
-- Enter a new customer review
-- Run inference using Random Forest, tuned Random Forest, XGBoost or LSTM
-- Receive the predicted sentiment and confidence score
-- Compare model inference times
+### 4. Model comparison
 
----
+- Compare classical machine-learning approaches with an LSTM neural network.
+- Evaluate models using accuracy, precision, recall, and F1-score.
+- Examine the impact of TF-IDF features and token sequences on classification performance.
 
-## How it works
+## Methodology and workflow
 
 ```mermaid
-flowchart LR
-    A[Amazon reviews] --> B[Cleaning and labels]
-    B --> C[NLP preprocessing]
-    C --> D1[TF-IDF]
-    C --> D2[Token sequences]
-    D1 --> E1[Random Forest]
-    D1 --> E2[XGBoost]
-    D2 --> E3[LSTM]
-    E1 --> F[Streamlit dashboard]
-    E2 --> F
-    E3 --> F
+flowchart TD
+    A[Amazon Customer Reviews] --> B[Data Cleaning]
+    B --> C[Rating-Based Sentiment Labelling]
+    C --> D[NLP Preprocessing]
+    D --> E1[TF-IDF Feature Extraction]
+    D --> E2[Tokenisation and Padding]
+    E1 --> F1[Random Forest]
+    E1 --> F2[Tuned Random Forest]
+    E1 --> F3[XGBoost]
+    E2 --> F4[LSTM Neural Network]
+    F1 --> G[Model Evaluation]
+    F2 --> G
+    F3 --> G
+    F4 --> G
+    G --> H[Streamlit Dashboard]
+    H --> I[Analytics and Sentiment Predictions]
 ```
 
 ### NLP pipeline
 
-1. Remove incomplete review records
-2. Convert ratings into three sentiment classes
-3. Normalise text and expand contractions
-4. Remove punctuation, numbers and stopwords while preserving negation
-5. Lemmatise cleaned tokens
-6. Create TF-IDF features for classical models
-7. Tokenise and pad sequences for the LSTM
-8. Evaluate, serialize and serve the trained models
-
----
+1. **Data cleaning:** Remove incomplete review records and prepare the dataset for analysis.
+2. **Sentiment labelling:** Convert star ratings into negative, neutral, and positive categories.
+3. **Text normalisation:** Standardise review text and expand contractions.
+4. **Text cleaning:** Remove punctuation, numbers, and stopwords while preserving negation.
+5. **Lemmatisation:** Reduce words to their base forms.
+6. **TF-IDF feature extraction:** Convert text into numerical features for classical machine-learning models.
+7. **Tokenisation:** Represent review text as sequences of tokens.
+8. **Sequence padding:** Standardise sequence lengths for LSTM input.
+9. **Model training and evaluation:** Train models and compare their predictive performance.
+10. **Application integration:** Load trained model artifacts for sentiment inference through the Streamlit interface.
 
 ## Technology stack
 
-| Area | Technologies |
+| Category | Technologies |
 |---|---|
-| Application | Python 3.11, Streamlit |
+| Programming language | Python 3.11 |
+| Web application | Streamlit |
 | Data processing | Pandas, NumPy |
-| NLP | NLTK, Contractions, TF-IDF |
-| Machine learning | Scikit-learn, XGBoost |
+| Natural language processing | NLTK, Contractions |
+| Feature extraction | TF-IDF, tokenisation, sequence padding |
+| Classical machine learning | Scikit-learn, Random Forest |
+| Gradient boosting | XGBoost |
 | Deep learning | TensorFlow, Keras, LSTM |
 | Visualisation | Plotly, Matplotlib, Seaborn |
+| Model optimisation | GridSearchCV |
 | Deployment | Streamlit Community Cloud |
-
----
+| Version control | Git, GitHub |
 
 ## Repository structure
 
 ```text
-InsightCart/
-├── app.py                  # Streamlit entry point
-├── prediction_utils.py     # Shared prediction helpers
-├── pages/                  # Dashboard and model screens
-├── notebooks/              # Cleaning, EDA and model experiments
+MarketMind-AI/
+├── app.py                  # Main Streamlit application
+├── prediction_utils.py     # Shared prediction utilities
+├── pages/                  # Dashboard and model pages
+├── notebooks/              # Data cleaning, EDA and experiments
 ├── models/                 # Trained model artifacts
 ├── data/                   # Raw and processed datasets
-├── requirements.txt
-└── pyproject.toml
+├── requirements.txt        # Python dependencies
+└── pyproject.toml           # Project configuration
 ```
 
----
+## Installation and local setup
 
-## Run locally
+### Prerequisites
 
-### 1. Clone the repository
+- Python 3.11
+- Git
+- pip or uv
+
+### Step 1: Clone the repository
 
 ```bash
-git clone https://github.com/nupoor-mahajan/InsightCart.git
-cd InsightCart
+git clone https://github.com/ni-saantt/MarketMind-AI.git
+cd MarketMind-AI
 ```
 
-### 2. Create and activate a virtual environment
+### Step 2: Create a virtual environment
 
 ```bash
 python -m venv .venv
 ```
 
-Windows PowerShell:
+Activate it on Windows PowerShell:
 
 ```powershell
 .venv\Scripts\Activate.ps1
 ```
 
-macOS or Linux:
+On macOS or Linux:
 
 ```bash
 source .venv/bin/activate
 ```
 
-### 3. Install dependencies and start the dashboard
+### Step 3: Install dependencies
 
 ```bash
 pip install -r requirements.txt
+```
+
+### Step 4: Run the application
+
+```bash
 streamlit run app.py
 ```
 
-### Alternative: use `uv`
+Open the local URL displayed in the terminal to access the application.
+
+### Alternative setup using uv
 
 ```bash
 uv venv .venv --python 3.11
@@ -198,50 +229,41 @@ uv pip install -r requirements.txt
 uv run streamlit run app.py
 ```
 
----
+## Author
 
-## My contribution
+**Nishant Choudhary**
 
-**Nupoor Mahajan**
+B.Tech Computer Science and Engineering — Data Science  
+Manipal University Jaipur
 
-- Trained and evaluated the XGBoost sentiment classifier
-- Designed and trained the LSTM deep-learning model
-- Integrated trained artifacts into the Streamlit application
-- Managed the GitHub repository and deployment workflow
-- Deployed the application on Streamlit Community Cloud
-
-
+- GitHub: [ni-saantt](https://github.com/ni-saantt)
+- LinkedIn: [ni-santt](https://linkedin.com/in/ni-santt)
 
 ## Limitations
 
-- Sentiment labels are inferred from star ratings rather than manually annotated review text.
-- The model may struggle with sarcasm, mixed sentiment and domain-specific language.
-- Confidence scores should not be treated as calibrated business-risk probabilities.
-- Results are based on the current Amazon review dataset and may not generalise to every marketplace or product category.
+- Sentiment labels are inferred from star ratings rather than independently annotated review text.
+- Sarcasm, mixed opinions, and domain-specific expressions can result in incorrect predictions.
+- Confidence scores should not be interpreted as calibrated probabilities of business risk.
+- Model performance may vary across marketplaces, product categories, and customer populations.
+- High test accuracy alone does not guarantee equivalent performance in a production environment.
 
-## Next steps
+## Future enhancements
 
-- Add aspect-based sentiment analysis for product features and service issues
-- Evaluate transformer models such as DistilBERT against the current LSTM baseline
-- Add error analysis and model-explanation views to the dashboard
+- **Aspect-based sentiment analysis:** Identify sentiment associated with specific product attributes, such as quality, durability, pricing, and delivery.
+- **Transformer-based models:** Evaluate DistilBERT and other transformer architectures against the existing LSTM baseline.
+- **Model explainability:** Highlight words and phrases that influence sentiment predictions.
+- **Error analysis:** Investigate misclassified reviews and performance across sentiment categories.
+- **Expanded evaluation:** Validate performance on additional datasets and product categories.
+- **Production monitoring:** Introduce confidence calibration and ongoing model-performance monitoring.
 
 ---
 
-
-
 <div align="center">
 
-**Built to explore how machine learning can turn customer feedback into clearer product decisions.**
+### MarketMind-AI
 
+**Turning customer feedback into actionable product insights through machine learning.**
 
+Built with Python, natural language processing, machine learning, and Streamlit.
 
 </div>
-
-
-
-
-
-
-
-
-
