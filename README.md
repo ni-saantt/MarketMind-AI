@@ -210,15 +210,7 @@ uv run streamlit run app.py
 - Managed the GitHub repository and deployment workflow
 - Deployed the application on Streamlit Community Cloud
 
-## Team
 
-| Member | Contribution |
-|---|---|
-| [Nupoor Mahajan](https://github.com/nupoor-mahajan) | XGBoost, LSTM, repository management and deployment |
-| [Akshata Naik](https://github.com/NaikAkshata30) | Data cleaning, EDA, Random Forest, presentation and documentation |
-| [Hansa Gusaiwal](https://github.com/hansagusaiwal) | NLP preprocessing, tuned Random Forest and documentation |
-
----
 
 ## Limitations
 
@@ -235,23 +227,13 @@ uv run streamlit run app.py
 
 ---
 
-## Academic context
 
-InsightCart was developed as a capstone project for **AICW by Edunet**, sponsored by **Microsoft** and **SAP**.
-
-The project uses open-source libraries and an Amazon reviews dataset for educational purposes. No standalone software licence has currently been declared for the repository.
-
-## Acknowledgements
-
-Amazon Reviews Dataset · Kaggle · Streamlit · TensorFlow · Scikit-learn · XGBoost · NLTK · Open-source community
-
----
 
 <div align="center">
 
 **Built to explore how machine learning can turn customer feedback into clearer product decisions.**
 
-[![Open App](https://img.shields.io/badge/Open_InsightCart-F97316?style=for-the-badge&logo=streamlit&logoColor=white)](https://aicw-insightcart.streamlit.app/)
+
 
 </div>
 
